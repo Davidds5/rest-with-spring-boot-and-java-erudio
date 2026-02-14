@@ -1,5 +1,6 @@
 package br.com.davidd5.controller;
 
+import br.com.davidd5.exception.UnsupportedMathOperationExceptions;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,14 +15,15 @@ public class MathController {
            @PathVariable("numberOne") String numberOne,
            @PathVariable("numberTwo") String numberTwo)throws Exception{
 
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new IllegalArgumentException();
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo))
+            throw new UnsupportedMathOperationExceptions("Please set a numeric value");
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
     }
 
     private Double convertToDouble(String strNumber) {
-        if (strNumber == null || strNumber.isEmpty()) throw new IllegalArgumentException();
+        if (strNumber == null || strNumber.isEmpty())
+            throw new UnsupportedMathOperationExceptions("Please set a numeric value");
         String number = strNumber.replace(", ", ".");
-
         return Double.parseDouble(number);
     }
 
