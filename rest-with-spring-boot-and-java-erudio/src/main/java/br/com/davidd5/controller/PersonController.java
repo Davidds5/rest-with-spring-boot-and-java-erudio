@@ -35,4 +35,16 @@ public class PersonController {
     }
 
 
+      @RequestMapping(
+    method = RequestMethod.POST,
+    consumes = MediaType.APPLICATION_JSON_VALUE,
+    produces = MediaType.APPLICATION_JSON_VALUE)
+
+    public Person create( Person person){
+          return service.create(person);
+    }
+
+
+
+
 }
