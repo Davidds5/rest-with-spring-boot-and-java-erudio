@@ -41,6 +41,21 @@ public class PersonService {
         return person;
 
     }
+
+    public Person create(Person person){
+        logger.info("Creating one Person");
+        return person;
+    }
+
+    public Person update(Person person){
+        logger.info("Updating one Person");
+        return person;
+    }
+
+    public void delete(String id){
+        logger.info("Delete one Person !");
+
+    }
     private Person mockPerson(int i) {
         Person person = new Person();
         long id = counter.incrementAndGet();
@@ -51,10 +66,4 @@ public class PersonService {
         person.setGender("Male");
         return person;
     }
-
-    public Person create(Person person){
-        logger.info("Creating all People!");
-        return person;
-    }
-
 }
