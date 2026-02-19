@@ -1,6 +1,7 @@
 package br.com.davidd5.exception.hadler;
 
 import br.com.davidd5.exception.ExceptionResponse;
+import br.com.davidd5.exception.ResourceNotFoundExceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,13 +26,13 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
     }
 
-    @ExceptionHandler(UnsupportedOperationException.class)
-    public final ResponseEntity<ExceptionResponse> handlerBadRequestExceptions(Exception e, WebRequest request){
+    @ExceptionHandler(ResourceNotFoundExceptions.class)
+    public final ResponseEntity<ExceptionResponse> handlerNotFoundExceptions(Exception e, WebRequest request){
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 e.getMessage(),
                 request.getDescription(false));
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
     }
 }
