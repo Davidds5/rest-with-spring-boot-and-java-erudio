@@ -1,4 +1,4 @@
-package br.com.davidd5;
+package br.com.davidd5.service;
 
 import br.com.davidd5.model.Person;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package br.com.davidd5.controller;
 
-import br.com.davidd5.PersonService;
+import br.com.davidd5.service.PersonService;
 import br.com.davidd5.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -49,6 +49,8 @@ public class PersonController {
     public Person update(@RequestBody Person person){
           return service.create(person);
     }
+
+
 
     @RequestMapping(value = "{id}",
             method = RequestMethod.DELETE)
