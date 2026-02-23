@@ -18,4 +18,4 @@ spring:
     open-in-view: false
 logging:
   level:
-    br.com.davidd5: DEBUG
+    root: WARN
