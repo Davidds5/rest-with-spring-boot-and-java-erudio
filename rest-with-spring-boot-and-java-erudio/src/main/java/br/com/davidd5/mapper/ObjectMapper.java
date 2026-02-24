@@ -5,7 +5,7 @@ import com.github.dozermapper.core.Mapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 public class ObjectMapper {
 
@@ -18,7 +18,7 @@ public class ObjectMapper {
     public static <O,D> List<D> parseListObjects(List<O> origin, Class<D> destination){
         List<D> destinationObject = new ArrayList<D>();
         for (Object o : origin ){
-         destinationObject.add(mapper.map(origin, destination));
+         destinationObject.add(mapper.map(o, destination));
         }
 
         return destinationObject;
