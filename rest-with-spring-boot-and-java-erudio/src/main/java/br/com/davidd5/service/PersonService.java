@@ -1,6 +1,7 @@
 package br.com.davidd5.service;
 
-import br.com.davidd5.data.dto.PersonDTO;
+import br.com.davidd5.data.dto.v1.PersonDTO;
+import br.com.davidd5.data.dto.v2.PersonDTOV2;
 import br.com.davidd5.exception.ResourceNotFoundExceptions;
 import static br.com.davidd5.mapper.ObjectMapper.parseListObjects;
 import static br.com.davidd5.mapper.ObjectMapper.parseObject;
@@ -48,6 +49,17 @@ public class PersonService {
 
         return parseObject(repository.save(entity), PersonDTO.class);
     }
+
+
+
+    public PersonDTOV2 createV2(PersonDTOV2 person){
+        logger.info("Creating one Person");
+        var entity = parseObject(person, Person.class);
+
+        return parseObject(repository.save(entity), PersonDTO.class);
+    }
+
+
 
     public PersonDTO update(PersonDTO person){
         logger.info("Updating one Person");

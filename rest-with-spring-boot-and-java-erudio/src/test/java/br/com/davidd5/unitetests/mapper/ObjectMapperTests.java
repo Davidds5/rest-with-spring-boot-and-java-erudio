@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import br.com.davidd5.data.dto.PersonDTO;
+import br.com.davidd5.data.dto.v1.PersonDTO;
 
 import br.com.davidd5.unitetests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;

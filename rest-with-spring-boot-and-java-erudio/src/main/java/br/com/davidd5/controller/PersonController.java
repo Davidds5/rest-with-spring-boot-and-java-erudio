@@ -1,6 +1,7 @@
 package br.com.davidd5.controller;
 
-import br.com.davidd5.data.dto.PersonDTO;
+import br.com.davidd5.data.dto.v1.PersonDTO;
+import br.com.davidd5.data.dto.v2.PersonDTOV2;
 import br.com.davidd5.service.PersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,15 @@ public class PersonController {
 
     public PersonDTO create(@RequestBody PersonDTO person){
           return service.create(person);
+    }
+
+
+    @PostMapping(name = "/v2",
+    consumes = MediaType.APPLICATION_JSON_VALUE,
+    produces = MediaType.APPLICATION_JSON_VALUE)
+
+    public PersonDTOV2 create(@RequestBody PersonDTOV2 personDTO){
+          return service.createV2(personDTO);
     }
 
       @PutMapping(
