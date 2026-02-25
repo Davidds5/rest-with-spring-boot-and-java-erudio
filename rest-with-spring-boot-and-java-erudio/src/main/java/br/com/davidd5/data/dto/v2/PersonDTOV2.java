@@ -12,7 +12,7 @@ public class PersonDTOV2 implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;
-    private Date birtDay;
+    private Date birthDay;
     private String address;
     private String gender;
 
@@ -59,22 +59,22 @@ public class PersonDTOV2 implements Serializable {
         this.firstName = firstName;
     }
 
-    public Date getBirtDay() {
-        return birtDay;
+    public Date getBirthDay() {
+        return birthDay;
     }
 
-    public void setBirtDay(Date birtDay) {
-        this.birtDay = birtDay;
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof PersonDTOV2 that)) return false;
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getBirtDay(), that.getBirtDay()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getGender(), that.getGender());
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getBirthDay(), that.getBirthDay()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getGender(), that.getGender());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getBirtDay(), getAddress(), getGender());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getBirthDay(), getAddress(), getGender());
     }
 }

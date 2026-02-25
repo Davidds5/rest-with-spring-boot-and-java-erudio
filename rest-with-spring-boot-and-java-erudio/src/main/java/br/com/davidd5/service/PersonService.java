@@ -5,6 +5,8 @@ import br.com.davidd5.data.dto.v2.PersonDTOV2;
 import br.com.davidd5.exception.ResourceNotFoundExceptions;
 import static br.com.davidd5.mapper.ObjectMapper.parseListObjects;
 import static br.com.davidd5.mapper.ObjectMapper.parseObject;
+
+import br.com.davidd5.mapper.custom.PersonMapper;
 import br.com.davidd5.model.Person;
 import br.com.davidd5.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -25,6 +27,9 @@ public class PersonService {
 
     @Autowired
     PersonRepository repository;
+
+    @Autowired
+    PersonMapper converter;
 
 
     public List<PersonDTO> findAll(){
@@ -53,10 +58,10 @@ public class PersonService {
 
 
     public PersonDTOV2 createV2(PersonDTOV2 person){
-        logger.info("Creating one Person");
-        var entity = parseObject(person, Person.class);
+        logger.info("Creating one Person V2");
+        var entity = converter.convertDTOToEntity(person);
 
-        return parseObject(repository.save(entity), PersonDTO.class);
+        return converter.convertEntityThoDTO(repository.save(entity));
     }
 
 
