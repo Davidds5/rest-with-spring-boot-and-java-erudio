@@ -22,7 +22,6 @@ public class PersonDTO implements Serializable {
     private String lastName;
     private String address;
 
-    @JsonIgnore
     private String gender;
 
     public PersonDTO() {
