@@ -1,11 +1,9 @@
 package br.com.davidd5.service;
 
+import br.com.davidd5.controller.PersonController;
 import br.com.davidd5.data.dto.v1.PersonDTO;
 import br.com.davidd5.data.dto.v2.PersonDTOV2;
 import br.com.davidd5.exception.ResourceNotFoundExceptions;
-import static br.com.davidd5.mapper.ObjectMapper.parseListObjects;
-import static br.com.davidd5.mapper.ObjectMapper.parseObject;
-
 import br.com.davidd5.mapper.custom.PersonMapper;
 import br.com.davidd5.model.Person;
 import br.com.davidd5.repository.PersonRepository;
@@ -16,6 +14,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import static br.com.davidd5.mapper.ObjectMapper.parseListObjects;
+import static br.com.davidd5.mapper.ObjectMapper.parseObject;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
 @Service
@@ -40,13 +43,22 @@ public class PersonService {
     }
 
 
-    public PersonDTO findById(Long id){
+    public PersonDTO findById(Long id) {
         logger.info("Finding one Person!");
 
-     var entity = repository.findById(id)
-             .orElseThrow(() -> new ResourceNotFoundExceptions("No records found for this ID"));
-     return parseObject(entity, PersonDTO.class);
+        var entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundExceptions("No records found for this ID"));
+        var dto = parseObject(entity, PersonDTO.class);
+
+        dto.add(
+                linkTo(methodOn(PersonController.class).findById(id))
+                        .withSelfRel()
+                        .withType("GET")
+        );
+
+        return dto;
     }
+
 
     public PersonDTO create(PersonDTO person){
         logger.info("Creating one Person");
