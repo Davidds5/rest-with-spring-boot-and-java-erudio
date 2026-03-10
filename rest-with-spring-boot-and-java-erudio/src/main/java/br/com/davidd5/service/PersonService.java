@@ -50,12 +50,7 @@ public class PersonService {
                 .orElseThrow(() -> new ResourceNotFoundExceptions("No records found for this ID"));
         var dto = parseObject(entity, PersonDTO.class);
 
-        dto.add(
-                linkTo(methodOn(PersonController.class).findById(id))
-                        .withSelfRel()
-                        .withType("GET")
-        );
-
+       addHateoasLinks(id, dto);
         return dto;
     }
 
@@ -96,6 +91,36 @@ public class PersonService {
        Person entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundExceptions("No records found for this ID"));
         repository.delete(entity);
+    }
+
+    private static void addHateoasLinks(Long id, PersonDTO dto){
+        dto.add(
+                linkTo(methodOn(PersonController.class).findById(id))
+                        .withSelfRel()
+                        .withType("GET")
+        );
+    dto.add(
+                linkTo(methodOn(PersonController.class).delete(id))
+                        .withRel("delete")
+                        .withType("DELETE")
+        );
+   dto.add(
+                linkTo(methodOn(PersonController.class).findAll())
+                        .withRel("findAll")
+                        .withType("GET")
+        );
+ dto.add(
+                linkTo(methodOn(PersonController.class).create(dto))
+                        .withRel("create")
+                        .withType("POST")
+        );
+ dto.add(
+                linkTo(methodOn(PersonController.class).update(dto))
+                        .withRel("update")
+                        .withType("PUT")
+        );
+
+
     }
 
 }
